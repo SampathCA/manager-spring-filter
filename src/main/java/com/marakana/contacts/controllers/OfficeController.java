@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.marakana.contacts.ContactManager;
 import com.marakana.contacts.entities.Address;
 import com.marakana.contacts.entities.Company;
 import com.marakana.contacts.entities.Office;
@@ -20,6 +21,9 @@ public class OfficeController {
 	private OfficeRepository officeRepository;
 	@Autowired
 	private CompanyRepository companyRepository;
+	
+	//@Autowired
+	//private ContactManager contactManager; //component
 
 	@RequestMapping(value = "/office", params = "add", method = RequestMethod.GET)
 	public String getAddOffice(@RequestParam("company_id") long companyId,
@@ -50,7 +54,7 @@ public class OfficeController {
 		Company company = companyRepository.findOne(companyId);
 		Office office = new Office(name, address, company);
 
-		office=officeRepository.save(office);
+		office = officeRepository.save(office);
 
 		return "redirect:office?id=" + office.getId();
 	}
