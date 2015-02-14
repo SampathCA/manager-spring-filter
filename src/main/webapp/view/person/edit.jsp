@@ -21,6 +21,36 @@
 			<li>state: <input type="text" name="state"
 				value="${address.state}"></li>
 			<li>zip: <input type="text" name="zip" value="${address.zip}"></li>
+
+			<li>manager: <select name="manager_id">
+					<option value="0">(none)</option>
+					<c:forEach var="manager" items="${managers}">
+						<c:choose>
+							<c:when test="${manager==person.manager}">
+								<option value="${manager.id}" selected="selected">"${manager.name}"</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${manager.id}">"${manager.name}"</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+			</select>
+			</li>
+
+			<li>employer: <select name="employer_id">
+					<option value="0">(none)</option>
+					<c:forEach var="employer" items="${employers}">
+						<c:choose>
+							<c:when test="${employer==person.employer}">
+								<option value="${employer.id}" selected="selected">"${employer.name}"</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${employer.id}">"${employer.name}"</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+			</select>
+			</li>
 		</ul>
 		<input type="submit" value="save">
 	</form>

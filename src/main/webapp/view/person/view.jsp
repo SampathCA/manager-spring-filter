@@ -14,6 +14,8 @@
 		<c:set var="address" value="${person.address}"></c:set>
 		<li>${address.street}</li>
 		<li>${address.city},${address.state},${address.zip}</li>
+		<li>Manager: ${person.manager.name}</li>
+		<li>Employer: ${person.employer.name}</li>
 	</ul>
 	<a href="${person.url}&edit">edit person</a> |
 	<a href="contacts">back to contact list</a>
