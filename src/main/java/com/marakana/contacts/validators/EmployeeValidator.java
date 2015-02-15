@@ -14,11 +14,29 @@ public class EmployeeValidator implements ConstraintValidator<Employee, Person> 
 
 	@Override
 	public boolean isValid(Person person, ConstraintValidatorContext context) {
+
+		// must only have manage if employer is on null
+		// person and manager must have same employer
+		// person must nt have itself in manager
 		Company employer = person.getEmployer();
 		Person manager = person.getManager();
 
-		return (employer == null || manager == null || employer.equals(manager
-				.getEmployer()));
+		/*
+		 * return (employer == null || manager == null ||
+		 * employer.equals(manager .getEmployer()));
+		 */
+
+		if (employer == null) {
+			return manager == null;
+		}
+		while (manager != null) {
+			if (person.equals(manager)
+					|| !employer.equals(manager.getEmployer())) {
+				return false;
+			}
+			manager = manager.getManager();
+		}
+		return true;
 	}
 
 }
