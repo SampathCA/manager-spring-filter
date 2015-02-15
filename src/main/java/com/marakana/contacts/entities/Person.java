@@ -8,18 +8,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.marakana.contacts.validators.Employee;
+
 @Entity
+@Employee
 public class Person extends Contact {
 
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private Address address;
-	
+
 	@ManyToOne
 	private Person manager;
-	
-	/*@OneToMany(mappedBy = "manager")
-	private Set<Person> reports;
-*/
+
+	/*
+	 * @OneToMany(mappedBy = "manager") private Set<Person> reports;
+	 */
 	@ManyToOne
 	private Company employer;
 
